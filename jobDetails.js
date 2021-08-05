@@ -6,10 +6,32 @@ const url =
 
 //
 const scrapJobDetails = async (url) => {
-  let jobDetails = { jobRequirments: [], jobResponsibilties: [] };
+  let jobDetails = {
+    jobRequirments: [],
+    jobResponsibilties: [],
+    compensation: "",
+    employmentType: "",
+  };
+
   const html = await request.get(url);
   const $ = cheerio.load(html);
+  var compensation, employmentType;
   fs.writeFileSync("./jobDetails.html", html);
+
+  var jobType = $(".attrgroup").text().split("\n");
+  jobType = jobType.map((s) => s.trim()); //trim all empty strings
+  jobType = jobType.filter((v) => v != ""); //Filter(Remove) Every empty string from array
+  jobType = jobType.map((str) => str.replaceAll("•\t", "")); //removing /t from all strings
+
+  jobType.forEach((job, index) => {
+    var a = job.split(":");
+    if (index == 0) {
+      compensation = [...a];
+    }
+    if (index == 1) {
+      employmentType = [...a];
+    }
+  });
 
   var textArray = $("#postingbody").text().split("\n");
   textArray = textArray.map((s) => s.trim()); //trim all empty strings
@@ -36,7 +58,10 @@ const scrapJobDetails = async (url) => {
   const requirements = textArray.slice(indexValRequirements, textArray.length);
   jobDetails.jobResponsibilties = [...responsibilities];
   jobDetails.jobRequirments = [...requirements];
-  console.log(jobDetails);
+  jobDetails.compensation = compensation[1];
+  jobDetails.employmentType = employmentType[1];
+  var resultJSON = JSON.stringify(jobDetails)
+  fs.writeFileSync("./jobDetails.json", resultJSON);
 };
 
 scrapJobDetails(url);
