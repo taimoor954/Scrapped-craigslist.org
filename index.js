@@ -23,14 +23,15 @@ async function scrapeCraglist(url) {
     var jobLinks = [];
     var nearByTitles = [];
     var nearByText = [];
-    var times = []
+    var times = [];
+    var jobs = []
     // var jobObj = {};
     fs.writeFileSync("./test.html", html);
     const $ = await cheerio.load(html);
 
     $(".result-info").each((index, element) => {
       postedDates.push($(element).children("time").text());
-      times.push($(element).children("time").attr('datetime'));
+      times.push($(element).children("time").attr("datetime"));
 
       nearByTitles.push(
         $(element).children(".result-meta").children(".nearby").attr("title")
@@ -48,7 +49,6 @@ async function scrapeCraglist(url) {
       jobLinks.push(link);
     });
 
-
     //STORING ALL THE ITEMS IN AN OBJECT
     for (let index = 0; index < jobTitles.length; index++) {
       jobObj = {
@@ -57,17 +57,21 @@ async function scrapeCraglist(url) {
         postedOn: postedDates[index],
         nearByTitle: nearByTitles[index],
         nearByText: nearByText[index],
-        time : times[index]
+        time: times[index],
       };
-      console.log(jobObj);
-      console.log("");
-      console.log("");
+      jobs.push(jobObj)
     }
+    writeJSON(jobs);
   } catch (error) {
     console.log(error);
   }
 }
 scrapeCraglist(url);
 
+var writeJSON = async (json) => {
+  var resultJSON = JSON.stringify(json);
+  console.log(resultJSON);
+   fs.writeFileSync("./jobs.json", resultJSON);
+};
 
-exports.jobObj = jobObj
+exports.jobObj = jobObj;
