@@ -74,4 +74,3 @@ var writeJSON = async (json) => {
    fs.writeFileSync("./jobs.json", resultJSON);
 };
 
-exports.jobObj = jobObj;
