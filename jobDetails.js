@@ -1,4 +1,4 @@
-const request = require("request-promise");
+const request = require('requestretry').defaults({fullResponse:false})
 const cheerio = require("cheerio");
 exports.scrapJobDetails = async (url) => {
   let jobDetails = {

@@ -1,4 +1,5 @@
-const request = require("request-promise");
+// const request = require("request-promise");
+const request = require('requestretry').defaults({fullResponse:false})
 const cheerio = require("cheerio");
 const fs = require("fs");
 const { title } = require("process");
