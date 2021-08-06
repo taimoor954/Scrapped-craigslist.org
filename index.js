@@ -73,6 +73,5 @@ scrapeCraglist(url);
 
 var writeJSON = async (json) => {
   var resultJSON = JSON.stringify(json);
-  console.log(resultJSON);
   fs.writeFileSync("./jobs.json", resultJSON);
 };

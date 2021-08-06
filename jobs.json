@@ -8,7 +8,6 @@
     "time": "2021-07-06 03:33",
     "Details": {
       "jobRequirments": [
-        "Requirements:",
         "Strong with fundamental front-end languages such as HTML, CSS, and JavaScript.",
         "Strong React.JS library skills",
         "Proficiency with server-side Node.JS and Express.JS",
@@ -18,7 +17,6 @@
         "Attention to detail."
       ],
       "jobResponsibilties": [
-        "Responsibilities:",
         "Developing front end website architecture.",
         "Designing user interactions on web pages.",
         "Developing back-end website applications.",
@@ -31,7 +29,8 @@
         "Meeting both technical and consumer needs."
       ],
       "compensation": " Open",
-      "employmentType": " contract"
+      "employmentType": " contract",
+      "details": []
     }
   },
   {

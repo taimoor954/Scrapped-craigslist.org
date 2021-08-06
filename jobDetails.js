@@ -6,6 +6,7 @@ exports.scrapJobDetails = async (url) => {
     jobResponsibilties: [],
     compensation: "",
     employmentType: "",
+    details: [],
   };
 
   const html = await request.get(url);
@@ -18,12 +19,10 @@ exports.scrapJobDetails = async (url) => {
   jobType = jobType.filter((v) => v != ""); //Filter(Remove) Every empty string from array
   jobType = jobType.map((str) => str.replaceAll("•\t", "")); //removing /t from all strings
 
-
   jobType.forEach((job, index) => {
     var a = job.split(":");
     if (index == 0) {
       compensation = [...a];
-    
     }
     if (index == 1) {
       employmentType = [...a];
@@ -50,11 +49,11 @@ exports.scrapJobDetails = async (url) => {
 
   if (indexValRequirements || indexValResponsibilty) {
     const responsibilities = textArray.slice(
-      indexValResponsibilty,
+      indexValResponsibilty + 1,
       indexValRequirements - 1
     );
     const requirements = textArray.slice(
-      indexValRequirements,
+      indexValRequirements + 1,
       textArray.length
     );
     jobDetails.jobResponsibilties = [...responsibilities];
@@ -64,7 +63,5 @@ exports.scrapJobDetails = async (url) => {
   }
   jobDetails.compensation = compensation[1];
   jobDetails.employmentType = employmentType[1];
-  return jobDetails
- 
+  return jobDetails;
 };
-
