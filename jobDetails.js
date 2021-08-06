@@ -1,11 +1,6 @@
-const fs = require("fs");
 const request = require("request-promise");
 const cheerio = require("cheerio");
-const url =
-  "https://indore.craigslist.org/sof/d/react-nodejs-developer/7346680061.html";
-
-//
-const scrapJobDetails = async (url) => {
+exports.scrapJobDetails = async (url) => {
   let jobDetails = {
     jobRequirments: [],
     jobResponsibilties: [],
@@ -16,17 +11,19 @@ const scrapJobDetails = async (url) => {
   const html = await request.get(url);
   const $ = cheerio.load(html);
   var compensation, employmentType;
-  fs.writeFileSync("./jobDetails.html", html);
+  // fs.writeFileSync("./jobDetails.html", html);
 
   var jobType = $(".attrgroup").text().split("\n");
   jobType = jobType.map((s) => s.trim()); //trim all empty strings
   jobType = jobType.filter((v) => v != ""); //Filter(Remove) Every empty string from array
   jobType = jobType.map((str) => str.replaceAll("•\t", "")); //removing /t from all strings
 
+
   jobType.forEach((job, index) => {
     var a = job.split(":");
     if (index == 0) {
       compensation = [...a];
+    
     }
     if (index == 1) {
       employmentType = [...a];
@@ -51,17 +48,23 @@ const scrapJobDetails = async (url) => {
     }
   });
 
-  const responsibilities = textArray.slice(
-    indexValResponsibilty,
-    indexValRequirements - 1
-  );
-  const requirements = textArray.slice(indexValRequirements, textArray.length);
-  jobDetails.jobResponsibilties = [...responsibilities];
-  jobDetails.jobRequirments = [...requirements];
+  if (indexValRequirements || indexValResponsibilty) {
+    const responsibilities = textArray.slice(
+      indexValResponsibilty,
+      indexValRequirements - 1
+    );
+    const requirements = textArray.slice(
+      indexValRequirements,
+      textArray.length
+    );
+    jobDetails.jobResponsibilties = [...responsibilities];
+    jobDetails.jobRequirments = [...requirements];
+  } else {
+    jobDetails.details = [...textArray];
+  }
   jobDetails.compensation = compensation[1];
   jobDetails.employmentType = employmentType[1];
-  var resultJSON = JSON.stringify(jobDetails)
-  fs.writeFileSync("./jobDetails.json", resultJSON);
+  return jobDetails
+ 
 };
 
-scrapJobDetails(url);

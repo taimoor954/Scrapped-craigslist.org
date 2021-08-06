@@ -2,6 +2,7 @@ const request = require("request-promise");
 const cheerio = require("cheerio");
 const fs = require("fs");
 const { title } = require("process");
+const { scrapJobDetails } = require("./jobDetails");
 const url = "https://ahmedabad.craigslist.org/d/software-qa-dba-etc/search/sof";
 
 const scrapeResult = {
@@ -24,7 +25,7 @@ async function scrapeCraglist(url) {
     var nearByTitles = [];
     var nearByText = [];
     var times = [];
-    var jobs = []
+    var jobs = [];
     // var jobObj = {};
     fs.writeFileSync("./test.html", html);
     const $ = await cheerio.load(html);
@@ -58,8 +59,10 @@ async function scrapeCraglist(url) {
         nearByTitle: nearByTitles[index],
         nearByText: nearByText[index],
         time: times[index],
+        Details: await scrapJobDetails(jobLinks[index]),
       };
-      jobs.push(jobObj)
+
+      jobs.push(jobObj);
     }
     writeJSON(jobs);
   } catch (error) {
@@ -71,6 +74,5 @@ scrapeCraglist(url);
 var writeJSON = async (json) => {
   var resultJSON = JSON.stringify(json);
   console.log(resultJSON);
-   fs.writeFileSync("./jobs.json", resultJSON);
+  fs.writeFileSync("./jobs.json", resultJSON);
 };
-

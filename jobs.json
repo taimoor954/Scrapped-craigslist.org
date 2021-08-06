@@ -5,7 +5,34 @@
     "postedOn": "Jul  6",
     "nearByTitle": "indore",
     "nearByText": "(idr > Jersey City, NJ  )",
-    "time": "2021-07-06 03:33"
+    "time": "2021-07-06 03:33",
+    "Details": {
+      "jobRequirments": [
+        "Requirements:",
+        "Strong with fundamental front-end languages such as HTML, CSS, and JavaScript.",
+        "Strong React.JS library skills",
+        "Proficiency with server-side Node.JS and Express.JS",
+        "Familiarity with database technology such as DynamoDB, MongoDB.",
+        "Excellent verbal communication skills.",
+        "Good problem-solving skills.",
+        "Attention to detail."
+      ],
+      "jobResponsibilties": [
+        "Responsibilities:",
+        "Developing front end website architecture.",
+        "Designing user interactions on web pages.",
+        "Developing back-end website applications.",
+        "Creating servers and databases for functionality.",
+        "Ensuring cross-platform optimization for mobile phones.",
+        "Ensuring responsiveness of applications",
+        "Working alongside graphic designers for web design features.",
+        "Seeing through a project from conception to finished product.",
+        "Designing and developing APIs.",
+        "Meeting both technical and consumer needs."
+      ],
+      "compensation": " Open",
+      "employmentType": " contract"
+    }
   },
   {
     "title": "App developers needed",
@@ -13,7 +40,19 @@
     "postedOn": "Jul 20",
     "nearByTitle": "mumbai",
     "nearByText": "(mum)",
-    "time": "2021-07-20 16:14"
+    "time": "2021-07-20 16:14",
+    "Details": {
+      "jobRequirments": [],
+      "jobResponsibilties": [],
+      "compensation": " 15-30k",
+      "employmentType": " contract",
+      "details": [
+        "QR Code Link to This Post",
+        "An upcoming fintech startup is looking for app developers to join our team.",
+        "It will be freelance role which will be converted to full time role in a few months.",
+        "Should have hands on experience with flutter/kotlin/Java. Work experience nit mandatory. But a can do attitude is must."
+      ]
+    }
   },
   {
     "title": "Filemaker Developer",
@@ -21,7 +60,17 @@
     "postedOn": "Jul  7",
     "nearByTitle": "mumbai",
     "nearByText": "(mum > Work From Home  )",
-    "time": "2021-07-07 20:15"
+    "time": "2021-07-07 20:15",
+    "Details": {
+      "jobRequirments": [],
+      "jobResponsibilties": [],
+      "compensation": " Doe - Give me an idea of your Required / Desired Monthly.",
+      "employmentType": " contract",
+      "details": [
+        "QR Code Link to This Post",
+        "We need someone that can Program Filemaker Data Base"
+      ]
+    }
   },
   {
     "title": "Drupal  developer.",
@@ -29,6 +78,17 @@
     "postedOn": "Jun 26",
     "nearByTitle": "mumbai",
     "nearByText": "(mum >   )",
-    "time": "2021-06-26 19:19"
+    "time": "2021-06-26 19:19",
+    "Details": {
+      "jobRequirments": [],
+      "jobResponsibilties": [],
+      "compensation": " Pay per job.",
+      "employmentType": " contract",
+      "details": [
+        "QR Code Link to This Post",
+        "I need a Drupal 9 developer for continuing projects.",
+        "I also need someone that can scrape content off of the internet, and someone that can write articles in English."
+      ]
+    }
   }
 ]
